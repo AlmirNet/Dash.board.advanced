@@ -1,0 +1,1 @@
+# Em components/dashboard existe esta importação 'from globals import *' importando esta pasta globals
