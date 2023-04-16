@@ -87,9 +87,17 @@ layout = dbc.Col([
                                 dbc.Button("Adicionar", className="btn-sucess", id="add-category-receita", style={"margin-top": "20px"}),
                                 html.Br(),
                                 html.Div(id="category-div-add-receita", style={}),
-                            ]),
-
-                            
+                            ], width=6),  
+                            dbc.Col([
+                                html.Legend('Excluir categoria', style={'color': 'red'}),
+                                dbc.Checklist(
+                                    id='checklist-selected-style-receita',
+                                    options=[],
+                                    value=[],
+                                    label_checked_style={'color': 'red'},
+                                    input_checked_style={'backgroundColor': 'blue', 'borderColor': 'orange'},
+                                ),
+                            ], width=6)
                         ])
                     ])
                 ])
