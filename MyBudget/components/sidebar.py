@@ -12,7 +12,7 @@ import pandas as pd
 
 # ========= Layout ========= #
 layout = dbc.Col([
-    html.H1("MyBestBudget", className='text-primary'),
+    html.H1("Advanced Budget", className='text-primary'),
     html.P('By ALMIRNET', className='text-info'),
     html.Hr(),
 
@@ -34,12 +34,52 @@ layout = dbc.Col([
         ], width=6),
     ]),
 
+    # Modal Receita
+    dbc.Modal([
+        dbc.ModalHeader(dbc.ModalTitle("Adicionar receita")),
+        dbc.ModalBody([
+    
+        ])
+    ], id='modal-novo-receita'),
+
+    # Modal Despesa
+    dbc.Modal([
+        dbc.ModalHeader(dbc.ModalTitle("Adicionar despesa")),
+        dbc.ModalBody([
+    
+        ])
+    ], id='modal-novo-despesa'),
+
     # Seção NAV ------------------------------------
     html.Hr(),
     html.Nav([
         dbc.NavLink('Dashboard', href='/dashboards', active='exact'),
         dbc.NavLink('Extratos', href='/extratos', active='exact')
-    ])
+    ]),
 
     
-])
+],)
+
+
+
+# ========================== Callbacks ====================== #
+# Pop-up receita
+@app.callback(
+    Output('modal-novo-receita', 'is_open'),
+    Input('open-novo-receita', 'n_clicks'),
+    State('modal-novo-receita', 'is_open')
+)
+def toggle_modal(n1, is_open):
+    if n1:
+        return not is_open
+    
+
+# Pop-up despesa
+@app.callback(
+    Output('modal-novo-despesa', 'is_open'),
+    Input('open-novo-despesa', 'n_clicks'),
+    State('modal-novo-despesa', 'is_open')
+)
+def toggle_modal(n1, is_open):
+    if n1:
+        return not is_open
