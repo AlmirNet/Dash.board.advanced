@@ -74,7 +74,26 @@ layout = dbc.Col([
                     html.Label('Categoria da receita'),
                     dbc.Select(id='select_receita', options=[])
                 ], width=4),
-            ], style={'margin-top': '25px'})
+            ], style={'margin-top': '25px'}),
+
+            dbc.Row(
+                dbc.Accordion([
+                    dbc.AccordionItem(children=[
+                        dbc.Row([
+                            dbc.Col([
+                                html.Legend("Adicionar categoria", style={'color': 'green'}),
+                                dbc.Input(type="text", placeholder="Nova categoria...", id="input-add-receita", value=""),
+                                html.Br(),
+                                dbc.Button("Adicionar", className="btn-sucess", id="add-category-receita", style={"margin-top": "20px"}),
+                                html.Br(),
+                                html.Div(id="category-div-add-receita", style={}),
+                            ]),
+
+                            
+                        ])
+                    ])
+                ])
+            )
         ])
     ], id='modal-novo-receita'),
 
