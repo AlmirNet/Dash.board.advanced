@@ -10,12 +10,27 @@ import calendar
 
 from app import app
 
+card_icon = {
+    "color": "white",
+    "textAlign": "center",
+    "fontSize": 30,
+    "margin":"auto",
+}
+
 # =========  Layout  =========== #
 layout = dbc.Col([
-        html.H5('Pagina Extratos, para aprimorar seu orçamento')
-
-
-], )
+        dbc.Row([
+            dbc.Col([
+                dbc.CardGroup([
+                    html.Legend('Saldo'),
+                    html.H5('R$5400', id='p-saldo-dashboards', style={})
+                ], style={'padding-left': '20px', 'padding-top': '10px'}),
+                dbc.Card([
+                    html.Div(className='fa fa-university')
+                ])
+            ])
+        ])
+    ])
 
 
 
