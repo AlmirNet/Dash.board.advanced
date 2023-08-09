@@ -14,11 +14,11 @@ card_icon = {
     "color": "white",
     "textAlign": "center",
     "fontSize": 30,
-    "margin":"auto",
+    "margin": "auto",
 }
 
 # =========  Layout  =========== #
-layout = dbc.Col([
+layout = dbc.Container([
     dbc.Row([
         dbc.Col([
             dbc.CardGroup([
@@ -62,45 +62,49 @@ layout = dbc.Col([
     ], style={'margin': '10px'}),
 
     dbc.Row([
-    dbc.Col([
-        dbc.Card([
-            html.Legend("Filtrar lançamentos", className="card-title"),
-            html.Label("Categoria-receita"),
-            html.Div(
+        dbc.Col([
+            dbc.Card([
+                html.Legend("Filtrar lançamentos", className="card-title"),
+                html.Label("Categoria-receita"),
+                html.Div(
+                    dcc.Dropdown(
+                        id="dropdown-receita",
+                        clearable=False,
+                        style={"width": "100%"},
+                        persistence=True,
+                        persistence_type="session",
+                        multi=True
+                    )
+                ),
+
+                html.Label("Categoria das despesas", style={"margin-top": "10px"}),
                 dcc.Dropdown(
-                    id="dropdown-receita",
+                    id="dropdown-despesas",
                     clearable=False,
                     style={"width": "100%"},
                     persistence=True,
                     persistence_type="session",
                     multi=True
                 )
-            ),
+            ]),
 
-            html.Label("Categoria das despesas", style={"margin-top": "10px"}),
-            dcc.Dropdown(
-                id="dropdown-despesas",
-                clearable=False,
-                style={"width": "100%"},
-                persistence=True,
-                persistence_type="session",
-                multi=True
+            html.Legend("Período de Análise", style={"margin-top": "10px"}),
+            dcc.DatePickerRange(
+                month_format='Do MMM, YY',
+                end_date_placeholder_text='Data...',
+                start_date=datetime(2022, 4, 1).date(),
+                end_date=datetime.today() + timedelta(days=31),
+                updatemode='singledate',
+                style={'z-index': '100'}
             )
-        ]),
-
-        html.Legend("Período de Análise", style={"margin-top": "10px"}),
-        dcc.DatePickerRange(
-            month_format='Do MMM, YY',
-            end_date_placeholder_text='Data...',
-            start_date=datetime(2022, 4, 1).date(),
-            end_date=datetime.today() + timedelta(days=31),
-            updatemode='singledate',
-            style={'z-index': '100'}
+        ], width=4),
+        dbc.Col(
+            dbc.Card(dcc.Graph(id='graph1'), style={'height': '100%', 'padding': '10px'}), width=8
         )
-    ], width=4)
-    
+    ])
 ])
-])
-
 
 # =========  Callbacks  =========== #
+
+# Aqui você precisaria adicionar os seus callbacks de acordo com a lógica do seu aplicativo.
+
