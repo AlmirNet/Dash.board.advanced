@@ -7,6 +7,8 @@ import plotly.express as px
 
 from app import app
 from components import sidebar, dashboards, extratos
+            
+from globals import *
 
 
 
