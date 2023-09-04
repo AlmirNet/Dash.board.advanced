@@ -27,10 +27,10 @@ if ("df_cat_despesas.csv" in os.listdir()) and ("df_cat_receitas.csv" in os.list
     cat_receita = df_cat_receitas.values.tolist()
     cat_despesa = df_cat_despesas.values.tolist()
 else:
-    cat_receita = {'Categoria': ["Salario", "Investimento", "Comissao"]}
-    cat_despesa = {'Categoria': ["Alimentacao", "Aluguel", "Saude"]}
+    cat_receitas = {'Categoria': ["Salario", "Investimento", "Comissao"]}
+    cat_despesas = {'Categoria': ["Alimentacao", "Aluguel", "Saude"]}
 
-    df_cat_receita = pd.DataFrame(cat_receita, columns=['Categoria'])
-    df_cat_despesa = pd.DataFrame(cat_despesa, columns=['Categoria'])
-    df_cat_despesa.to_csv("df_cat_despesas.csv", index=False)
-    df_cat_receita.to_csv("df_cat_receitas.csv", index=False)
+    df_cat_receitas = pd.DataFrame(cat_receitas, columns=['Categoria'])
+    df_cat_despesas = pd.DataFrame(cat_despesas, columns=['Categoria'])
+    df_cat_despesas.to_csv("df_cat_despesas.csv", index=False)
+    df_cat_receitas.to_csv("df_cat_receitas.csv", index=False)

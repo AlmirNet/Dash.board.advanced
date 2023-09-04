@@ -223,9 +223,11 @@ layout = dbc.Col([
     Input('open-novo-receita', 'n_clicks'),
     State('modal-novo-receita', 'is_open')
 )
-def toggle_modal(n1, is_open):
+def toggle_modal_receita(n1, is_open):
     if n1:
         return not is_open
+    return is_open
+
     
 
 # Pop-up despesa
@@ -234,9 +236,50 @@ def toggle_modal(n1, is_open):
     Input('open-novo-despesa', 'n_clicks'),
     State('modal-novo-despesa', 'is_open')
 )
-def toggle_modal(n1, is_open):
+def toggle_modal_despesa(n1, is_open):
     if n1:
         return not is_open
+    return is_open
+
     
 
-@callbacks
+@app.callback(
+    Output('store-receita', 'data'),
+    Input('salva_receita', 'n_clicks'),
+    [
+        State('txt-receita', 'value'),
+        State('valor_receita', 'value'),
+        State('date-receitas', 'date'),
+        State('switches-input-receita', 'value'),
+        State('select_receita', 'value'),
+        State('store-receita', 'data')
+    ]
+)
+def salve_form_receitas(n_clicks, descricao, valor, data, switches, categoria, receitas):
+    # Verifique se 'n_clicks' foi definido
+    #if n_clicks is not None:
+        # Seu código de processamento aqui
+     #   if valor and not (valor == "" or valor is None):
+      #      valor = round(float(valor), 2)
+       #     data = pd.to_datetime(data).date()
+        #return receitas  # Retorne o novo valor para 'store-receita' se necessário
+    #else:
+     #   return receitas  # Retorna o valor atual de 'store-receita' se 'n_clicks' não estiver definido
+     df_receitas = pd.DataFrame(dict_receitas)
+
+     if n and not(valor == "" or valor == None):
+         valor = round(float(valor), 2)
+         date = pd.to_datetime(date).date()
+         categoria = categoria[0]
+         recebido = 1 if 1 in switches else 0
+         fixo = 1 if 2 in switches else 0
+
+         df_receitas.loc[df_receitas.shape[0]] = [valor, recebido, fixo, date, categoria, descricao]
+         df_receitas.to_csv("df_receitas.csv")
+
+     data_return = df_receitas.to_dict()    
+     return data_return
+
+
+
+
